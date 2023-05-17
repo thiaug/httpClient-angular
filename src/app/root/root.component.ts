@@ -1,18 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
-interface Response {
-  time: {
-    updated: string;
-  };
-
-  bpi: {
-    USD: {
-      symbol: string;
-      rate_float: number;
-    };
-  };
-}
+import { BitcoinService } from '../bitcoin.service';
 
 @Component({
   selector: 'app-root',
@@ -20,17 +7,7 @@ interface Response {
   styleUrls: ['./root.component.css'],
 })
 export class RootComponent implements OnInit {
-  currentPrice = {} as Response;
+  constructor(public bitcoin: BitcoinService) {}
 
-  constructor(private http: HttpClient) {}
-
-  update() {
-    let url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
-    this.http.get<Response>(url).subscribe((data) => {
-      this.currentPrice = data;
-    });
-  }
-  ngOnInit() {
-    this.update();
-  }
+  ngOnInit() {}
 }

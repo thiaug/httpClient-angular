@@ -1,7 +1,25 @@
 <h1>Teste HttpClient</h1>
-<input type="button" value="Atualizar" (click)="update()" />
+<input type="button" value="Atualizar" (click)="bitcoin.update()" />
 <hr />
-<h2>Data/Hora</h2>
-<div>{{ currentPrice.time.updated }}</div>
-<h4>USD <span [innerHTML]="currentPrice.bpi.USD.symbol"></span></h4>
-<h3>{{ currentPrice.bpi.USD.rate_float | currency }}</h3>
+<div *ngIf="bitcoin.currentPrice.bpi">
+  <h2>Data/Hora</h2>
+  <div>{{ bitcoin.currentPrice.time.updated }}</div>
+  <h4>USD <span [innerHTML]="bitcoin.currentPrice.bpi.USD.symbol"></span></h4>
+  <h3>{{ bitcoin.currentPrice.bpi.USD.rate_float | currency }}</h3>
+
+  <h4>BRL <span [innerHTML]="bitcoin.currentPrice.bpi.BRL.symbol"></span></h4>
+  <h3>R{{ bitcoin.currentPrice.bpi.BRL.rate_float | currency }}</h3>
+</div>
+
+<table border="1">
+<tr>
+  <th>UPDATED</th>
+  <th>USD</th>
+  <th>BRL</th>
+</tr>
+<tr *ngFor="let price of this.bitcoin.history">
+<td>{{price.time.updated}}</td>
+<td>{{bitcoin.currentPrice.bpi.USD.rate_float}}</td>
+<td>{{bitcoin.currentPrice.bpi.BRL.rate_float}}</td>
+</tr>
+</table>
