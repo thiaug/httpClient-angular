@@ -1,0 +1,7 @@
+<h1>Teste HttpClient</h1>
+<input type="button" value="Atualizar" (click)="update()" />
+<hr />
+<h2>Data/Hora</h2>
+<div>{{ currentPrice.time.updated }}</div>
+<h4>USD <span [innerHTML]="currentPrice.bpi.USD.symbol"></span></h4>
+<h3>{{ currentPrice.bpi.USD.rate_float | currency }}</h3>
